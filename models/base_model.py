@@ -12,7 +12,7 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
-        """init s sdsdfd dfasdfsfa"""
+        """Instatntiates a new model"""
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at':
