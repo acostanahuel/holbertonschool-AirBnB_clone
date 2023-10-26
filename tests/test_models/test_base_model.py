@@ -100,6 +100,10 @@ class test_class_base(unittest.TestCase):
             self.assertNotEqual(value.created_at, test_dict.get(
                 f"model{index + 1}", self.test).created_at
             )
+            
+        a = BaseModel()
+        b = BaseModel()
+        self.assertNotEqual(a.created_at, b.created_at)
 
     def test_save(self):
         """Test saving the model."""
