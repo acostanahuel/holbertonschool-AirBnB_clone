@@ -48,3 +48,4 @@ class BaseModel:
         dic["created_at"] = self.created_at.isoformat()
         dic["updated_at"] = self.updated_at.isoformat()
         return dic
+
