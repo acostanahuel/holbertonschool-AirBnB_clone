@@ -13,7 +13,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
-        from . import storage
+        """from . import storage"""
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at':
@@ -28,7 +28,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            """storage.new(self)"""
 
     def __str__(self):
         """str"""
@@ -38,7 +38,7 @@ class BaseModel:
         """update every time obj is accsesed"""
         from . import storage
         self.updated_at = datetime.now()
-        storage.save()
+        """storage.save()"""
         
 
     def to_dict(self):
