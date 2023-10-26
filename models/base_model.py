@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 class BaseModel:
- 
+
     """
     A base class for all hbnb models.
     """
@@ -39,7 +39,6 @@ class BaseModel:
         from . import storage
         self.updated_at = datetime.now()
         storage.save()
-        
 
     def to_dict(self):
         """dict for seralization"""
@@ -48,4 +47,3 @@ class BaseModel:
         dic["created_at"] = self.created_at.isoformat()
         dic["updated_at"] = self.updated_at.isoformat()
         return dic
-
