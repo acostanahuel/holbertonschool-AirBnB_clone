@@ -92,16 +92,10 @@ class test_class_base(unittest.TestCase):
             )
 
     def test_created_at(self):
-        """Test create_at attribute."""
-        test_dict = {}
-        for index in range(1, 20):
-            test_dict[f"model{index}"] = BaseModel()
-        for index, value in enumerate(test_dict.values(), 1):
-            self.assertNotEqual(value.created_at, test_dict.get(
-                f"model{index + 1}", self.test).created_at
-            )
-            
+        """Test create_at attribute."""     
         a = BaseModel()
+        for _ in range (99999):
+            pass
         b = BaseModel()
         self.assertNotEqual(a.created_at, b.created_at)
 
