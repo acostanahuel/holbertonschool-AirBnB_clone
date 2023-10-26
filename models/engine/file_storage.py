@@ -27,10 +27,10 @@ class FileStorage:
             
  
     def reload(self):
+        """reloads objects and save to dic"""
         try:
-            with open(self.__file_path, 'r') as file:
-                data = json.load(file)
-                self.__objects = data
+            with open(self.__file_path) as file:
+                for key, value in json.load(file).items():
+                    self.__objects[key] = eval(value['__class__'])(**value)
         except FileNotFoundError:
-           
             pass
