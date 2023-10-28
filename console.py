@@ -2,7 +2,7 @@
 """Module that contain the entry point of the command interpreter"""
 
 import cmd
-from models.base_model import BaseModel as B
+from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
 
@@ -28,9 +28,11 @@ and prints the id
         if line == "":
             print("** class name missing **")
         args = line.split()
-        with open("file2.json", "a") as o:
-            o.write(B(args[0]))
-            o.write("\n")
+        my_model = BaseModel()
+        my_model.name = str(args[0])
+        my_model.my_number = 89
+        my_model.save()
+        print(my_model.id)
         return False
 
 
