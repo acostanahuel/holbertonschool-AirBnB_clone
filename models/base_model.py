@@ -41,9 +41,14 @@ class BaseModel:
         storage.save()
 
     def to_dict(self):
-        """dict for seralization"""
-        dic = self.__dict__.copy()
-        dic["__class__"] = type(self).__name__
+        """dict for serialization"""
+        dic = {
+        key: value
+        for key, value in self.__dict__.items()
+        if key != '__class__'
+    }
+        dic["id"] = self.id
         dic["created_at"] = self.created_at.isoformat()
         dic["updated_at"] = self.updated_at.isoformat()
+        dic["__class__"] = type(self).__name__
         return dic

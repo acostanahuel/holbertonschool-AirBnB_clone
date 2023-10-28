@@ -20,10 +20,11 @@ class FileStorage:
 
     def save(self):
         """Serialize __objetcs obj with key <obj_class_name>.id"""
-        odict = FileStorage.__objects
-        objdict = {obj: odict[obj].to_dict() for obj in odict.keys()}
-        with open(FileStorage.__file_path, "w") as f:
-            json.dump(objdict, f)
+        new_dict = {}
+        for key, value in self.__objects.items():
+            new_dict.update([(key, value.to_dict())])
+        with open(self.__file_path, "w", encoding='UTF-8') as file:
+            json.dump(new_dict, file)
 
     def reload(self):
         """reloads objects and save to dic"""
