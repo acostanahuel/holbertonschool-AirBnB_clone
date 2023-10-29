@@ -5,11 +5,26 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 import sys
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
+classes = {
+    "BaseModel": BaseModel,
+    "User": User,
+    "State": State,
+    "City": City,
+    "Amenity": Amenity,
+    "Place": Place,
+    "Review": Review,
+           }
 
 class HBNBCommand(cmd.Cmd):
     """The console with te commands:
-create, show, update, all, help, EOF, quit and destroy
-"""
+    create, show, update, all, help, EOF, quit and destroy"""
 
     prompt = "(hbnb) "
     classes = ["BaseModel","Amenity","City","Place","Review","State",
@@ -29,9 +44,8 @@ create, show, update, all, help, EOF, quit and destroy
         pass
 
     def do_create(self, line):
-        """Creates a new instance of BaseModel, saves it (to the JSON file) \
-and prints the id.
-"""
+        """Creates a new instance of BaseModel, saves it (to the JSON file) 
+        and prints the id."""
         if line == "":
             print("** class name missing **")
         elif line not in self.classes:
@@ -43,9 +57,8 @@ and prints the id.
         return False
     
     def do_show(self, line):
-        """Prints the string representation of an instance based on the \
-class name and id.
-"""
+        """Prints the string representation of an instance based on the
+        class name and id."""
         args = line.split()
         if args == []:
             print("** class name missing **")
@@ -63,9 +76,8 @@ class name and id.
         return False
 
     def do_destroy(self, line):
-        """Deletes an instance based on the class name and id (save the \
-change into the JSON file).
-"""
+        """Deletes an instance based on the class name and id (save the 
+        change into the JSON file)."""
         args = line.split()
         if args == []:
             print("** class name missing **")
@@ -84,9 +96,8 @@ change into the JSON file).
         return False
 
     def do_all(self, line):
-        """Prints all string representation of all instances based or not on \
-the class name.
-"""
+        """Prints all string representation of all instances based or not on 
+        the class name. """
         args = line.split()
         if len(args) == 0:
             print(storage.all())
@@ -101,9 +112,8 @@ the class name.
             print(a_list)
 
     def do_update(self, line):
-        """Updates an instance based on the class name and id by adding or \
-updating attribute (save the change into the JSON file).
-"""
+        """Updates an instance based on the class name and id by adding or 
+        updating attribute (save the change into the JSON file)."""
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
