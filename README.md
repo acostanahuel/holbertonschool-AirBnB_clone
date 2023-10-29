@@ -173,9 +173,6 @@ c3-f4bf-425e-b1d4-165f52c6ff81) {'updated_at': datetime.datetime(2019, 2, 17, 2
 
 ```
 
--  
-
-
 -   **update**
     -   Usage: `update <class> <id> <attribute name> "<attribute value>"` or `<class>.update(<id>, <attribute name>, <attribute value>)` or `<class>.update( <id>, <attribute dictionary>)`.
 
@@ -231,4 +228,4 @@ $ python3 unittest -m tests/test_console.py
 ## Authors ✒️
 
 -   **Nahuel Acosta** <[acostanahuel](https://github.com/acostanahuel)>
--   **Brian de Leon** <[[Kiwizacxs](https://github.com/Kiwizacxs)>
+-   **Brian de Leon** <[Kiwizacxs](https://github.com/Kiwizacxs)>
