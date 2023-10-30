@@ -1,16 +1,17 @@
 #!/usr/bin/python3
 """
-testing class City
+testing class review
 """
 
 import unittest
-from models.city import City
+from models.review import Review
 
 
-
-class test_class_amenity(unittest.TestCase):
-    """class for testing class city"""
-    my_model = City()
+class test_class_review(unittest.TestCase):
+    """class for testing class review"""
+    my_model = Review()
 
     def testName(self):
-        self.assertEqual(self.my_model.name, "")
+        self.assertEqual(self.my_model.place_id, "")
+        self.assertEqual(self.my_model.user_id, "")
+        self.assertEqual(self.my_model.text, "")
