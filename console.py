@@ -12,6 +12,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 classes = {
     "BaseModel": BaseModel,
     "User": User,
@@ -22,13 +23,18 @@ classes = {
     "Review": Review,
            }
 
+
 class HBNBCommand(cmd.Cmd):
     """The console with te commands:
     create, show, update, all, help, EOF, quit and destroy"""
-
     prompt = "(hbnb) "
-    classes = ["BaseModel","Amenity","City","Place","Review","State",
-        "User"]
+    classes = ["BaseModel",
+               "Amenity",
+               "City",
+               "Place",
+               "Review",
+               "State",
+               "User"]
 
     def do_quit(self, line):
         """Quit command to exit the program.
@@ -44,18 +50,18 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, line):
-        """Creates a new instance of BaseModel, saves it (to the JSON file) 
-        and prints the id."""
+        """Creates a new instance of BaseModel, saves it (to the JSON file)
+ and prints the id."""
         if line == "":
             print("** class name missing **")
         elif line not in self.classes:
             print("** class doesn't exist **")
         else:
-            my_model = getattr(sys.modules[__name__], line)() 
+            my_model = getattr(sys.modules[__name__], line)()
             my_model.save()
             print(my_model.id)
         return False
-    
+
     def do_show(self, line):
         """Prints the string representation of an instance based on the
         class name and id."""
@@ -63,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
         if args == []:
             print("** class name missing **")
         elif args[0] not in self.classes:
-                print("** class doesn't exist **")
+            print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
         else:
@@ -76,13 +82,13 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_destroy(self, line):
-        """Deletes an instance based on the class name and id (save the 
-        change into the JSON file)."""
+        """Deletes an instance based on the class name and id (save the
+ change into the JSON file)."""
         args = line.split()
         if args == []:
             print("** class name missing **")
         elif args[0] not in self.classes:
-                print("** class doesn't exist **")
+            print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
         else:
@@ -96,11 +102,15 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_all(self, line):
-        """Prints all string representation of all instances based or not on 
-        the class name. """
+        """Prints all string representation of all instances based or not on
+ the class name. """
         args = line.split()
         if len(args) == 0:
-            print(storage.all())
+            a_list = []
+            _all = storage.all()
+            for x, i in _all.items():
+                a_list.append(str(i))
+            print(a_list)
         elif args[0] not in self.classes:
             print("** class doesn't exist **")
         else:
@@ -112,8 +122,8 @@ class HBNBCommand(cmd.Cmd):
             print(a_list)
 
     def do_update(self, line):
-        """Updates an instance based on the class name and id by adding or 
-        updating attribute (save the change into the JSON file)."""
+        """Updates an instance based on the class name and id by adding or
+ updating attribute (save the change into the JSON file)."""
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -123,12 +133,18 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             search = f"{args[0]}.{args[1]}"
-            inst = storage.all()
-            if search in inst:
-                del storage.all()[search]
-                storage.save()
-            else:
+            if search not in storage.all().keys():
                 print("** no instance found **")
+            elif len(args) < 3:
+                print("** attribute name missing **")
+            elif len(args) < 4:
+                print("** value missing **")
+            else:
+                atributte_name = args[3]
+                update = storage.all()[search]
+                update.__setattr__(args[2], atributte_name)
+                update.save()
+        return False
 
 
 if __name__ == "__main__":
